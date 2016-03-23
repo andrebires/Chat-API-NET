@@ -44,8 +44,8 @@
       <HintPath>..\packages\Strilanc.Value.May.1.0.2\lib\portable-net4+sl4+wp7+win8\May.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="mycurve25519">
-      <HintPath>..\mycurve25519.dll</HintPath>
+    <Reference Include="mycurve25519_32bit">
+      <HintPath>..\mycurve25519\mycurve25519-bin\mycurve25519_32bit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
