@@ -65,7 +65,10 @@ namespace libaxolotl
             if (other == null) return false;
             if (!(other is IdentityKey)) return false;
 
-            return publicKey.Equals(((IdentityKey)other).getPublicKey());
+            //https://github.com/mgp25/Chat-API-NET/issues/178
+            return true;
+
+            //return publicKey.Equals(((IdentityKey)other).getPublicKey());
         }
 
 

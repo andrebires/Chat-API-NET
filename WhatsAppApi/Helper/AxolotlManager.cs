@@ -133,7 +133,10 @@ namespace WhatsAppApi.Helper
                             //Convert to list.
                             List<ProtocolTreeNode> children = node.children.ToList();
                             List<KeyValue> attributeHash = node.attributeHash.ToList();
-                            children.Add(new ProtocolTreeNode("body", null, null, (byte[])plaintext));
+                            //children.Add(new ProtocolTreeNode("body", null, null, (byte[])plaintext));
+                            // https://github.com/FanduNyagi/Chat-API-NET/commit/1842672a7f06719bb0368bb90f7051b04a18dfd3
+                            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(plaintext as string);
+                            children.Add(new ProtocolTreeNode("body", null, null, bytes));
                             rtnNode = new ProtocolTreeNode(node.tag, attributeHash.ToArray(), children.ToArray(), node.data);
                             break;
                         case "media":
