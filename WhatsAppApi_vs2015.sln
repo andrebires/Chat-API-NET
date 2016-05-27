@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mylibaxolotl", "mylibaxolot
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mycurve25519", "mycurve25519\mycurve25519\mycurve25519.vcxproj", "{C2BED275-103A-437A-8DA3-0E17EA241F3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatsAppPort", "WhatsAppPort\WhatsAppPort.csproj", "{91D9D263-BFB7-4C31-890F-4A42F734670E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,18 @@ Global
 		{C2BED275-103A-437A-8DA3-0E17EA241F3E}.Release|x64.Build.0 = Release|x64
 		{C2BED275-103A-437A-8DA3-0E17EA241F3E}.Release|x86.ActiveCfg = Release|Win32
 		{C2BED275-103A-437A-8DA3-0E17EA241F3E}.Release|x86.Build.0 = Release|Win32
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Debug|x64.ActiveCfg = Debug|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Debug|x86.ActiveCfg = Debug|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Debug|x86.Build.0 = Debug|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Release|Any CPU.ActiveCfg = Release|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Release|Mixed Platforms.Build.0 = Release|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Release|x64.ActiveCfg = Release|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Release|x86.ActiveCfg = Release|x86
+		{91D9D263-BFB7-4C31-890F-4A42F734670E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
