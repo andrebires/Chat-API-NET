@@ -92,7 +92,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>D:\Repositories\mgp25\Chat-API-NET\mycurve25519\mycurve25519;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Repositories\Chat-API-NET\mycurve25519\mycurve25519;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -106,7 +106,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>dummy.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>D:\Repositories\mgp25\Chat-API-NET\mycurve25519\mycurve25519\extra;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Repositories\Chat-API-NET\mycurve25519\mycurve25519\extra;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>true</GenerateWindowsMetadata>
     </Link>
