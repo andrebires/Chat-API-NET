@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>mycurve25519.x64</id>
+        <version>0.1.0</version>
+        <authors>andreb</authors>
+        <projectUrl>https://github.com/mgp25/Chat-API-NET</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Curve25519 implementation from https://github.com/mgp25/Chat-API-NET/tree/master/mycurve25519</description>
+    </metadata>
+    <files>
+        <file src="WhatsAppApi\bin\Release\mycurve25519.dll" target="lib\net45\mycurve25519.dll" />
+    </files>
+</package>

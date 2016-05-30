@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>mylibaxolotl.x64</id>
+        <version>0.1.1</version>
+        <authors>andreb</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>libaxolotl implementation from https://github.com/mgp25/Chat-API-NET/tree/master/mylibaxolotl</description>
+        <dependencies>
+            <group targetFramework=".NETFramework4.5">
+                <dependency id="mycurve25519.x64" version="0.1.0" />
+                <dependency id="Google.ProtocolBuffers" version="2.4.1.555" />
+                <dependency id="Strilanc.Value.May" version="1.0.2" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="WhatsAppApi\bin\Release\mylibaxolotl.dll" target="lib\net45\mylibaxolotl.dll" />
+    </files>
+</package>

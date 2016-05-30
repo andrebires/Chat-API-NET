@@ -140,6 +140,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\mylibaxolotl\mylibaxolotl.csproj">
+      <Project>{1debda0c-62c7-40a9-b74a-0f086fc2b65d}</Project>
+      <Name>mylibaxolotl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WhatsAppApi\WhatsAppApi.csproj">
       <Project>{3fc9096a-c4d2-40c7-be7b-d98acab3bd2b}</Project>
       <Name>WhatsAppApi</Name>

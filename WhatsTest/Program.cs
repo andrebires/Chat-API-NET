@@ -30,7 +30,7 @@ namespace WhatsTest
             string nickname = "QA Tim";
             string sender = "553193087883"; // Mobile number with country code (but without + or 00)
             string password = "gAAScpnL3vmH7NbhdMAftJqIvdc=";//v2 password
-            string target = "553191046338";// Mobile number to send the message to
+            string target = "553188717292";// Mobile number to send the message to
 
             wa = new WhatsApp(sender, password, nickname, true);
 
