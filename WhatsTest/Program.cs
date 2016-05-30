@@ -1,18 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using WhatsAppApi;
 using WhatsAppApi.Account;
 using WhatsAppApi.Helper;
-using WhatsAppApi.Register;
 using WhatsAppApi.Response;
 
 namespace WhatsTest
@@ -20,23 +14,23 @@ namespace WhatsTest
     internal class Program
     {
         // DEMO STORE SHOULD BE DATABASE OR PERMANENT MEDIA IN REAL CASE
-        static IDictionary<string, axolotl_identities_object> axolotl_identities        = new Dictionary<string, axolotl_identities_object>();
-        static IDictionary<uint, axolotl_prekeys_object> axolotl_prekeys                = new Dictionary<uint, axolotl_prekeys_object>();
-        static IDictionary<uint, axolotl_sender_keys_object> axolotl_sender_keys        = new Dictionary<uint, axolotl_sender_keys_object>();
-        static IDictionary<string, axolotl_sessions_object> axolotl_sessions            = new Dictionary<string, axolotl_sessions_object>();
-        static IDictionary<uint, axolotl_signed_prekeys_object> axolotl_signed_prekeys  = new Dictionary<uint, axolotl_signed_prekeys_object>();
+        static IDictionary<string, axolotl_identities_object> axolotl_identities = new Dictionary<string, axolotl_identities_object>();
+        static IDictionary<uint, axolotl_prekeys_object> axolotl_prekeys = new Dictionary<uint, axolotl_prekeys_object>();
+        static IDictionary<uint, axolotl_sender_keys_object> axolotl_sender_keys = new Dictionary<uint, axolotl_sender_keys_object>();
+        static IDictionary<string, axolotl_sessions_object> axolotl_sessions = new Dictionary<string, axolotl_sessions_object>();
+        static IDictionary<uint, axolotl_signed_prekeys_object> axolotl_signed_prekeys = new Dictionary<uint, axolotl_signed_prekeys_object>();
 
-        static WhatsApp wa = null;
+        static WhatsApp wa;
 
         private static void Main(string[] args)
         {
             var tmpEncoding = Encoding.UTF8;
-            System.Console.OutputEncoding = Encoding.Default;
-            System.Console.InputEncoding = Encoding.Default;
+            Console.OutputEncoding = Encoding.Default;
+            Console.InputEncoding = Encoding.Default;
             string nickname = "QA Tim";
             string sender = "553193087883"; // Mobile number with country code (but without + or 00)
             string password = "gAAScpnL3vmH7NbhdMAftJqIvdc=";//v2 password
-            string target = "553188717292";// Mobile number to send the message to
+            string target = "553191046338";// Mobile number to send the message to
 
             wa = new WhatsApp(sender, password, nickname, true);
 
@@ -111,8 +105,7 @@ namespace WhatsTest
             wa.SendGetPrivacyList();
             wa.SendGetClientConfig();
 
-            if (wa.LoadPreKeys() == null)
-                wa.sendSetPreKeys(true);
+            if (wa.LoadPreKeys() == null) wa.sendSetPreKeys(true);
 
             ProcessChat(wa, target);
             Console.ReadKey();
@@ -135,7 +128,7 @@ namespace WhatsTest
 
         static void wa_OnGetStatus(string from, string type, string name, string status)
         {
-            Console.WriteLine(String.Format("Got status from {0}: {1}", from, status));
+            Console.WriteLine("Got status from {0}: {1}", from, status);
         }
 
         static string getDatFileName(string pn)
@@ -151,7 +144,7 @@ namespace WhatsTest
             {
                 Console.WriteLine("Existing: {0} (username {1})", item.Key, item.Value);
             }
-            foreach(string item in failedNumbers)
+            foreach (string item in failedNumbers)
             {
                 Console.WriteLine("Non-Existing: {0}", item);
             }
@@ -188,7 +181,7 @@ namespace WhatsTest
         static void wa_OnGetMessageLocation(ProtocolTreeNode locationNode, string from, string id, double lon, double lat, string url, string name, byte[] preview, string User)
         {
             Console.WriteLine("Got location from {0} ({1}, {2})", from, lat, lon);
-            if(!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 Console.WriteLine("\t{0}", name);
             }
@@ -238,7 +231,7 @@ namespace WhatsTest
 
         static void wa_OnGetLastSeen(string from, DateTime lastSeen)
         {
-            Console.WriteLine("{0} last seen on {1}", from, lastSeen.ToString());
+            Console.WriteLine("{0} last seen on {1}", from, lastSeen);
         }
 
         static void wa_OnGetMessageReceivedServer(string from, string id)
@@ -303,14 +296,14 @@ namespace WhatsTest
                                                 {
                                                     wa.PollMessages();
                                                     Thread.Sleep(100);
-                                                    continue;
                                                 }
-                                                    
+
                                             }
                                             catch (ThreadAbortException)
                                             {
                                             }
-                                        }) {IsBackground = true};
+                                        })
+            { IsBackground = true };
             thRecv.Start();
 
             WhatsUserManager usrMan = new WhatsUserManager();
@@ -351,7 +344,7 @@ namespace WhatsTest
                         wa.SendMessage(tmpUser.GetFullJid(), line);
                         break;
                 }
-           } 
+            }
         }
 
         // ALL NE REQUIRED INTERFACES FOR AXOLOTL ARE BELOW
@@ -374,10 +367,11 @@ namespace WhatsTest
             if (axolotl_identities.ContainsKey(recipientId))
                 axolotl_identities.Remove(recipientId);
 
-            axolotl_identities.Add(recipientId, new axolotl_identities_object(){
-                    recipient_id = recipientId,
-                    public_key  = identityKey
-                });
+            axolotl_identities.Add(recipientId, new axolotl_identities_object
+            {
+                recipient_id = recipientId,
+                public_key = identityKey
+            });
 
             return true;
         }
@@ -412,10 +406,11 @@ namespace WhatsTest
         /// <returns></returns>
         static List<byte[]> wa_OngetIdentityKeyPair()
         {
-            List<byte[]> result = new List<byte[]> { };
+            List<byte[]> result = new List<byte[]>();
             axolotl_identities_object identity;
             axolotl_identities.TryGetValue("-1", out identity);
-            if (identity != null){
+            if (identity != null)
+            {
                 result.Add(identity.public_key);
                 result.Add(identity.private_key);
             }
@@ -436,7 +431,8 @@ namespace WhatsTest
             if (axolotl_identities.ContainsKey("-1"))
                 axolotl_identities.Remove("-1");
 
-            axolotl_identities.Add("-1", new axolotl_identities_object(){
+            axolotl_identities.Add("-1", new axolotl_identities_object
+            {
                 recipient_id = "-1",
                 registration_id = registrationId.ToString(),
                 public_key = publickey,
@@ -475,8 +471,8 @@ namespace WhatsTest
         /// <returns></returns>
         static List<byte[]> wa_OnloadSignedPreKeys()
         {
-            List<byte[]> result = new List<byte[]> { };
-            foreach (axolotl_signed_prekeys_object key in axolotl_signed_prekeys.Values) 
+            List<byte[]> result = new List<byte[]>();
+            foreach (axolotl_signed_prekeys_object key in axolotl_signed_prekeys.Values)
                 result.Add(key.record);
 
             if (result.Count == 0)
@@ -508,7 +504,8 @@ namespace WhatsTest
             if (axolotl_signed_prekeys.ContainsKey(signedPreKeyId))
                 axolotl_signed_prekeys.Remove(signedPreKeyId);
 
-            axolotl_signed_prekeys.Add(signedPreKeyId, new axolotl_signed_prekeys_object(){
+            axolotl_signed_prekeys.Add(signedPreKeyId, new axolotl_signed_prekeys_object
+            {
                 prekey_id = signedPreKeyId,
                 record = signedPreKeyRecord
             });
@@ -557,7 +554,7 @@ namespace WhatsTest
         /// <returns></returns>
         static List<byte[]> wa_OnloadPreKeys()
         {
-            List<byte[]> result = new List<byte[]> { };
+            List<byte[]> result = new List<byte[]>();
             foreach (axolotl_prekeys_object key in axolotl_prekeys.Values)
                 result.Add(key.record);
 
@@ -577,7 +574,7 @@ namespace WhatsTest
             if (axolotl_prekeys.ContainsKey(prekeyId))
                 axolotl_prekeys.Remove(prekeyId);
 
-            axolotl_prekeys.Add(prekeyId, new axolotl_prekeys_object()
+            axolotl_prekeys.Add(prekeyId, new axolotl_prekeys_object
             {
                 prekey_id = prekeyId.ToString(),
                 record = preKeyRecord
@@ -617,9 +614,9 @@ namespace WhatsTest
         /// <returns></returns>
         static List<uint> wa_OngetSubDeviceSessions(string recipientId)
         {
-            List<uint> result = new List<uint> { };
-            foreach (axolotl_sessions_object key in axolotl_sessions.Values) 
-                    result.Add(key.device_id);
+            List<uint> result = new List<uint>();
+            foreach (axolotl_sessions_object key in axolotl_sessions.Values)
+                result.Add(key.device_id);
 
             return result;
         }
@@ -650,7 +647,8 @@ namespace WhatsTest
             if (axolotl_sessions.ContainsKey(recipientId))
                 axolotl_sessions.Remove(recipientId);
 
-            axolotl_sessions.Add(recipientId, new axolotl_sessions_object(){
+            axolotl_sessions.Add(recipientId, new axolotl_sessions_object
+            {
                 device_id = deviceId,
                 recipient_id = recipientId,
                 record = sessionRecord
@@ -659,27 +657,32 @@ namespace WhatsTest
         #endregion
     }
 
-    public class axolotl_identities_object {
+    public class axolotl_identities_object
+    {
         public string recipient_id { get; set; }
         public string registration_id { get; set; }
         public byte[] public_key { get; set; }
         public byte[] private_key { get; set; }
     }
-    public class axolotl_prekeys_object {
+    public class axolotl_prekeys_object
+    {
         public string prekey_id { get; set; }
         public byte[] record { get; set; }
 
     }
-    public class axolotl_sender_keys_object {
+    public class axolotl_sender_keys_object
+    {
         public uint sender_key_id { get; set; }
         public byte[] record { get; set; }
     }
-    public class axolotl_sessions_object {
+    public class axolotl_sessions_object
+    {
         public string recipient_id { get; set; }
         public uint device_id { get; set; }
         public byte[] record { get; set; }
     }
-    public class axolotl_signed_prekeys_object {
+    public class axolotl_signed_prekeys_object
+    {
         public uint prekey_id { get; set; }
         public byte[] record { get; set; }
     }
